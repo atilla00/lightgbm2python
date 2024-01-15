@@ -21,7 +21,7 @@ model = LGBMClassifier(verbose=-1)
 model.fit(X, y)
 
 
-# Categorical features supported with pandas.Categorical, use get_category_mappings_from_X() if you want to use
+# Categorical features supported with pandas.Categorical, use get_category_mappings_from_X() for mappings
 # categoric_mappings = lgbm_exporter.get_category_mappings_from_X(X)
 lgbm_exporter.export_model(
     model, 
