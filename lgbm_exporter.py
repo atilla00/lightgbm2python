@@ -78,7 +78,7 @@ def get_category_mappings_from_X(X):
 
     return categoric_mappings
 
-def export_model(model, categoric_mappings, output_path="lgbm_model_exported.py"):
+def export_model(model, categoric_mappings={}, output_path="lgbm_model_exported.py"):
     """
     Export a trained lightgbm model to a Python code file for inference.
 
