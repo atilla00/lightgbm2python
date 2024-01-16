@@ -31,7 +31,7 @@ lgbm_exporter.export_model(
 
 import lgbm_model_export
 idx = 3
-example = X.iloc[idx, :].replace(np.nan, None).to_dict()
+example = X.iloc[idx, :].replace([np.nan], [None]).to_dict()
 print(example)
 print(model.predict_proba(X)[idx])
 print(lgbm_model_export.predict(**example))
