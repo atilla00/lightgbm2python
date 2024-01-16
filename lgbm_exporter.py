@@ -23,22 +23,22 @@ def _build_python_code_from_tree(function_name, node, feature_names, categoric_m
             threshold, default_left, decision_type = node['threshold'], node["default_left"], node["decision_type"]
             if default_left:
                 if decision_type == "<=":
-                    code_string.append(f"{indent}if {feature_name} <= {threshold} or {feature_name} is None:")
+                    code_string.append(f"{indent}if {feature_name} is None or {feature_name} <= {threshold}:")
                 elif decision_type == "==":
                     selected_categories = _get_categories_from_threshold(feature_name, threshold, categoric_mappings)
-                    code_string.append(f"{indent}if {feature_name} in {selected_categories} or {feature_name} is None:")
+                    code_string.append(f"{indent}if {feature_name} is None or {feature_name} in {selected_categories}:")
                 elif decision_type == ">=":
-                    code_string.append(f"{indent}if {feature_name} > {threshold} or {feature_name} is None:")
+                    code_string.append(f"{indent}if {feature_name} is None or {feature_name} > {threshold}:")
                 else:
                     raise ValueError(f"Unknown decision_type: {node['decision_type']}")
             else:
                 if decision_type == "<=":
-                    code_string.append(f"{indent}if {feature_name} <= {threshold}:")
+                    code_string.append(f"{indent}if {feature_name} is not None and {feature_name} <= {threshold}:")
                 elif decision_type == "==":
                     selected_categories = _get_categories_from_threshold(feature_name, threshold, categoric_mappings)
-                    code_string.append(f"{indent}if {feature_name} in {selected_categories}:")
+                    code_string.append(f"{indent}if {feature_name} is not None and {feature_name} in {selected_categories}:")
                 elif decision_type == ">=":
-                    code_string.append(f"{indent}if {feature_name} > {threshold}:")
+                    code_string.append(f"{indent}if {feature_name} is not None and {feature_name} > {threshold}:")
                 else:
                     raise ValueError(f"Unknown decision_type: {node['decision_type']}")
                 
